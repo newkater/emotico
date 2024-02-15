@@ -18,10 +18,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="relative xl:pl-20 xl:pr-20 pl-10 pr-10">
-        <NavBar></NavBar>
-        {children}
-        <Footer></Footer>
+      <body>
+        <section className='border-2'>
+          <NavBar></NavBar>
+        </section>
+
+        <section className="relative xl:pl-20 xl:pr-20 pl-10 pr-10">
+          {children}
+        </section>
+        
+        <section>
+          <Footer></Footer>
+        </section>
       </body>
     </html>
   )
