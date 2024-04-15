@@ -1,10 +1,16 @@
-import Link from 'next/link'
-import React from 'react'
+import { LOGIN_PATH } from "@/routes";
+import Link from "next/link";
+import React from "react";
+import { Button } from "./ui/button";
 
-export const LoginButton = () => {
+const LoginButton = () => {
   return (
-    <div className='border-2 p-3 font-semibold text-red-900 hover:text-red-500 border-red-500'>
-        <Link href="/login">Login / Register</Link>
-    </div>
-  )
-}
+    <Button variant="outline" size="xl">
+      <Link href={LOGIN_PATH}>
+        Login / Register
+      </Link>
+    </Button>
+  );
+};
+
+export default LoginButton;

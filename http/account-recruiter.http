@@ -1,0 +1,65 @@
+@login = albus.dumbledore
+@password = Hogwarts123!
+@first_name = Albus
+
+@last_name = Dumbledore
+@company_name = Hogwarts
+@company_public_id = 255666bc-0340-4ed8-9ba7-7007953b3746
+@recruiterId = 4fcb264e-92d8-411e-845f-6aa00fbb6c85
+
+### Get account
+GET {{baseUrl}}/account
+Cookie: {{cookie}}
+
+### Recruiter Sign-In
+# @name sign_in
+POST {{baseUrl}}/recruiter/sign-in
+Content-Type: application/json
+
+{
+    "login": "{{login}}",
+    "password": "{{password}}"
+}
+
+@cookie = {{sign_in.response.headers.Set-Cookie}}
+
+### Recruiter Sign-Up
+POST {{baseUrl}}/recruiter/sign-up
+Content-Type: application/json
+
+{
+    "login": "{{login}}",
+    "password": "{{password}}",
+    "first_name": "{{first_name}}",
+    "last_name":" {{last_name}}",
+    "company_name": "{{company_name}}"
+}
+
+### Interviews
+GET {{baseUrl}}/recruiter/interviews
+Cookie: {{cookie}}
+
+### Interviews
+GET {{baseUrl}}/recruiter/{{recruiterId}}/interviews
+
+
+### Refresh Token
+POST {{baseUrl}}/refresh-token
+
+### Verify
+POST  {{baseUrl}}/verify
+
+### Sign Out
+POST  {{baseUrl}}/sign-out
+
+### Recruiter Sign-Up
+POST {{baseUrl}}/recruiter/sign-up
+Content-Type: application/json
+
+{
+    "login": "{{login}}",
+    "password": "{{password}}",
+    "first_name": "{{first_name}}",
+    "last_name":" {{last_name}}",
+    "company_public_id": "{{company_public_id}}"
+}

@@ -1,0 +1,73 @@
+@login = harry.potter
+@password = Hogwarts123!
+@candidateId = 3a87decb-8931-4a91-b408-58a96656b318
+@delete_id = 00000000-b299-4769-8a3b-d330300e18c0
+
+### Candidate Sign-In
+# @name sign_in
+POST {{baseUrl}}/candidate/sign-in
+ 
+{
+    "login": "{{login}}",
+    "password": "{{password}}"
+}
+
+@cookie = {{sign_in.response.headers.Set-Cookie}}
+
+
+### Get candidates
+GET {{baseUrl}}/candidates
+
+### Get candidate
+GET {{baseUrl}}/candidate/{{candidateId}}
+
+### Get candidate interviews
+GET {{baseUrl}}/candidate/interviews
+Cookie: {{cookie}}
+
+### Get candidate interviews by Id
+GET {{baseUrl}}/candidate/{{candidateId}}/interviews
+
+### Update candidate
+PUT {{baseUrl}}/candidate/{{candidateId}}
+Content-Type: application/json
+
+{
+    "first_name": "Harry",
+    "last_name": "Potter",
+    "current_position": "Auror",
+    "resume": "awesome resume",
+    "bio": "the best",
+    "skills": [
+        "Flying"
+    ],
+    "photo": "",
+    "education": "Hogwarts"
+}
+
+### Delete candidate
+DELETE {{baseUrl}}/candidate/{{delete_id}}
+
+### Add skills to candidate
+POST  {{baseUrl}}/candidate/skills
+Content-Type: application/json
+Cookie: {{cookie}}
+
+{
+  "skills": [
+    "Python",
+    "JavaScript",
+    "SQL"
+  ]
+}
+
+### Delete skills from position
+DELETE  {{baseUrl}}/candidate/skills
+Content-Type: application/json
+Cookie: {{cookie}}
+
+{
+  "skills": [
+    "Python"
+  ]
+}

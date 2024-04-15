@@ -1,0 +1,46 @@
+@login = harry.potter
+@password = Hogwarts123!
+
+@positionId = 92222dde-45c6-44fa-89a2-471e77c65a18
+
+@interviewId = 2196cfbf-4d8e-464c-aa52-5f48f2ff621e
+
+### Candidate Sign-In
+# @name sign_in
+POST {{baseUrl}}/candidate/sign-in
+ 
+{
+    "login": "{{login}}",
+    "password": "{{password}}"
+}
+
+@cookie = {{sign_in.response.headers.Set-Cookie}}
+
+### Get positions
+GET {{baseUrl}}/positions
+
+### Get position
+GET {{baseUrl}}/position/{{positionId}}
+
+### Get interviews for position
+GET {{baseUrl}}/positions/{{positionId}}/interviews
+
+
+### Create interview
+POST {{baseUrl}}/position/{{positionId}}/interview
+Cookie: {{cookie}}
+
+
+### Create interview result
+POST {{baseUrl}}/interview/{{interviewId}}/result
+
+
+
+# response:
+# {
+#   "data": {
+#     "public_id": "6aae999b-1649-41df-8eff-6240fae1736f"
+#   },
+#   "error": null,
+#   "status": 0
+# }

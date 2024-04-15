@@ -1,53 +1,47 @@
-'use client'
+"use client";
 
-import { signUp } from '@/lib/account';
-import React, { useState } from 'react';
+import { registerCandidate } from "@/actions/account";
+import React from "react";
+import { FormInput } from "./form-input";
+import { redirect } from "next/navigation";
+import { LOGIN_PATH } from "@/routes";
+import { useToast } from "./ui/use-toast";
+import Link from "next/link";
+import { TextCondensed } from "./text-condensed";
+import { Button } from "./ui/button";
 
 export const RegisterForm = () => {
-    const [name, setName] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    
-    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-  
-      const response = await signUp({name, firstName, lastName, password, confirmPassword})
-      console.log(response);
-  
+  const { toast } = useToast();
+
+  const onSubmit = async (formData: FormData) => {
+    const success = await registerCandidate(formData);
+    if (success) {
+      toast({ description: "Registration succeeded." });
+      redirect(LOGIN_PATH);
+    } else {
+      toast({ variant: "destructive", description: "Registration failed" });
     }
-  
-    return (
-      <div>
-          <form onSubmit={(e) => onSubmit(e)}>
-                <label>
-                    Username:
-                    <input type="text" name="username" value={name} onChange={(e) => setName(e.target.value)} />
-                </label>
-                <br />
-                <label>
-                    First Name:
-                    <input type="text" name="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-                </label>
-                <br />
-                <label>
-                    Last Name:
-                    <input type="text" name="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-                </label>
-                <br />
-                <label>
-                    Password:
-                    <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                </label>
-                <br />
-                <label>
-                    Confirm Password:
-                    <input type="password" name="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-                </label>
-                <br />
-                <button type='submit'>Register!</button>
-          </form>
-      </div>
-    )
-}
+  };
+
+  return (
+    <section>
+      <form className="min-w-md mx-auto" action={onSubmit}>
+        <FormInput name="login" type="text" label="Username" />
+        <FormInput name="first_name" type="text" label="First Name" />
+        <FormInput name="last_name" type="text" label="Last Name" />
+        <FormInput name="password" type="password" label="Password" />
+        <FormInput name="current_position" type="text" label="Current Position" />
+        <FormInput name="bio" type="text" label="Bio" />
+        <FormInput name="education" type="text" label="Education" />
+        <Button type="submit" size="xl" className="w-full mt-3">
+          Register
+        </Button>
+        <Button variant="link" size="xl" className="w-full mt-2">
+          <Link href="/">
+            <TextCondensed>Back to Home Page</TextCondensed>
+          </Link>
+        </Button>
+      </form>
+    </section>
+  );
+};

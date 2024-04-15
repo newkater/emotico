@@ -1,0 +1,15 @@
+@recruiterId = 2a37b1af-db47-4c1e-9d91-465282c3fc06
+
+### Get recruiters
+GET {{baseUrl}}/recruiters
+
+### Get recruiter
+GET {{baseUrl}}/recruiter/{{recruiterId}}
+
+### Get recruiter positions
+GET {{baseUrl}}/recruiters/{{recruiterId}}/positions
+
+### Get recruiter interviews
+GET {{baseUrl}}/recruiter/{{recruiterId}}/interviews
+
+

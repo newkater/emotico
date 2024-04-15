@@ -1,0 +1,32 @@
+@login = harry
+@password = Hogwarts123!
+
+@positionId = 92222dde-45c6-44fa-89a2-471e77c65a18
+
+@interviewId = 2196cfbf-4d8e-464c-aa52-5f48f2ff621e
+
+#questionId = 2a106082-c6ab-4bbf-acd2-11f8252dc9cd
+@questionId = d0a6c026-6080-4dba-b9f6-f03b841aef95
+#@questionId = 1ff1ecc7-2790-4dba-a48c-b709b5f6f87d
+#@video = https://emoticodev.blob.core.windows.net/video/e31a8d96-a20e-4ca1-96a8-70c5a7f1c424_c25e069a-8118-422b-9229-408498cb6879.webm
+@video = https://emoticodev.blob.core.windows.net/video/6bebd59f-d07a-4d8b-b93f-4278ecfa241a_cbe2e107-7d1e-41ee-b344-f5b301ac45e0.webm
+# https://emoticodev.blob.core.windows.net/video/0932dfe0-c382-44a4-a736-f69740e8cc00_40205ee5-0d6c-4eeb-821f-95313c3d7c95.webm
+
+
+### Get positions
+GET {{baseUrl}}/positions
+
+### Get interviews for position
+GET {{baseUrl}}/positions/{{positionId}}/interviews
+
+### Get questions for position
+GET {{baseUrl}}/position/{{positionId}}/questions
+
+### Add video to interview
+POST {{baseUrl}}/question/{{questionId}}/video
+Content-Type: application/json
+
+{
+    "interview_public_id": "{{interviewId}}",
+    "video": "{{video}}"
+}

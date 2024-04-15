@@ -1,7 +1,9 @@
+import { HomeMain } from "@/components/home-main";
+
 export default function Home() {
   return (
-    <main>
-      <h1>Home page.</h1>
+    <main className="container mx-auto flex-1">
+      <HomeMain />
     </main>
-  )
+  );
 }

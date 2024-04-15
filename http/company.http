@@ -1,0 +1,32 @@
+@companyId = 255666bc-0340-4ed8-9ba7-7007953b3746
+@update_id = 8c146d67-ae17-4b1d-8c01-fc25cda15603
+
+### Get companies
+GET {{baseUrl}}/companies
+
+### Get company
+GET {{baseUrl}}/company/{{companyId}}
+
+### Get positions for company
+GET {{baseUrl}}/companies/{{companyId}}/positions
+
+### Create company
+POST {{baseUrl}}/company
+Content-Type: application/json
+
+{
+    "name": "Hogwarts",
+    "logo": "",
+    "description": "Hogwarts School of Witchcraft and Wizardry"
+}
+
+### Update company
+PUT {{baseUrl}}/company/{{update_id}}
+Content-Type: application/json
+
+{
+    "public_id": "{{update_id}}",
+    "name": "Hogwarts",
+    "logo": "",
+    "description": "Hogwarts School of Witchcraft and Wizardry"
+}

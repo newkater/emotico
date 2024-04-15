@@ -1,7 +1,14 @@
 export const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/profile", label: "Profile" },
-    { href: "/applications", label: "Applications" },
-    { href: "/interviews", label: "Interviews" },
-    { href: "/positions", label: "Positions" },
+    { href: "/", label: "Home", public: true },
+    { href: "/interviews", label: "My Interviews", public: false },
+    { href: "/positions", label: "Positions", public: false },    
+    { href: "/companies", label: "Browse Companies", public: true },
 ];
+
+export const fileContainers = {
+  image: "image",
+  video: "video",
+  document: "doc"
+}
+
+export const logTable = "log"

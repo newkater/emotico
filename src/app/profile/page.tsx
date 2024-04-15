@@ -1,27 +1,41 @@
-import { getProfile } from '@/lib/getProfile'
-import { Metadata } from 'next'
+import { Metadata } from "next";
+import { notFound, redirect } from "next/navigation";
+import { LOGIN_PATH } from "../../routes";
+import { Title } from "@/components/title";
+import { getToken, getUser } from "@/lib/auth";
+import { ProfileCandidate } from "@/components/profile-candidate";
+import { ProfileRecruiter } from "@/components/profile-recruiter";
 
 export const metadata: Metadata = {
-    title: 'Profile',
-}
+  title: "Profile",
+};
 
 const Profile = async () => {
-    const profileData: Promise<User> = getProfile(1);
+  const token = await getToken();
+  if (!token) {
+    return redirect(LOGIN_PATH);
+  }
 
-    const user = await profileData;
+  const user = await getUser();
 
-    return (
-        <div>
-            <h3>Profile</h3>
-            <ul>
-                <li>{user.id}</li>
-                <li>{user.name}</li>
-                <li>{user.username}</li>
-                <li>{user.email}</li>
-            </ul>
+  if (!user) {
+    notFound();
+  }
 
-        </div>
-    )
-}
+  return (
+    <div>
+      <Title className="text-3xl mt-10 mb-5 justify-center flex">
+        <h2>Profile</h2>
+      </Title>
+      {user.role === "candidate" ? (
+        <ProfileCandidate />
+      ) : user.role === "recruiter" ? (
+        <ProfileRecruiter userId={user.user_public_id}/>
+      ) : (
+        <div>Role not nound</div>
+      )}
+    </div>
+  );
+};
 
-export default Profile
+export default Profile;

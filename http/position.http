@@ -1,0 +1,76 @@
+@positionId = 92222dde-45c6-44fa-89a2-471e77c65a18
+@questionId = 1ff1ecc7-2790-4dba-a48c-b709b5f6f87d
+
+### Get positions
+GET {{baseUrl}}/positions
+
+### Get position
+GET {{baseUrl}}/position/{{positionId}}
+
+### Get interviews for position
+GET {{baseUrl}}/positions/{{positionId}}/interviews
+
+### Get questions for position
+GET {{baseUrl}}/position/{{positionId}}/questions
+
+### Update question
+PUT {{baseUrl}}/question/{{questionId}}
+Content-Type: application/json
+
+{
+  "name": "Describe a spell that is one of the Unforgivable Curses.",
+  "read_duration": 60,
+  "answer_duration": 120
+}
+
+### Delete questions for position
+DELETE {{baseUrl}}/question/{{questionId}}
+
+
+### Create position
+POST  {{baseUrl}}/position
+Content-Type: application/json
+Cookie: access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTE4MDkzNjcsImlhdCI6MTcxMTgwMDM2Nywicm9sZSI6InJlY3J1aXRlciIsInVzZXJfcHVibGljX2lkIjoiZDliNzI3NmMtNTQ0Mi00ZTQzLWI4MGQtZTYxMzM0M2Q3OGQyIn0.7VvZ_Mm9oZqtkjDD45aUtgGqNlzW_ocL0cCRdXDeZPA
+
+{
+  "name": "Software Engineer",
+  "status": 0,
+  "skills": [
+    "Python",
+    "JavaScript"
+  ],
+  "description": "This position is awesome"
+}
+
+### Add skills to position
+POST  {{baseUrl}}/position/{{positionId}}/skills
+Content-Type: application/json
+
+{
+  "skills": [
+    "Python",
+    "JavaScript",
+    "SQL"
+  ]
+}
+
+### Delete skills from position
+DELETE  {{baseUrl}}/position/{{positionId}}/skills
+Content-Type: application/json
+
+{
+  "skills": [
+    "Python"
+  ]
+}
+
+### Create interview
+POST {{baseUrl}}/position/{{positionId}}/interview
+
+
+  # "company": {
+  #   "public_id": "255666bc-0340-4ed8-9ba7-7007953b3746",
+  #   "name": "Hogwarts",
+  #   "logo": "",
+  #   "description": ""
+  # },

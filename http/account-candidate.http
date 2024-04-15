@@ -1,0 +1,49 @@
+@login = harry.potter
+
+@password = Hogwarts123!
+@first_name = Harry
+@last_name = Potter
+@token  = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTE0NDM3MTQsImlhdCI6MTcxMTQzNDcxNCwicm9sZSI6ImNhbmRpZGF0ZSIsInVzZXJfcHVibGljX2lkIjoiZjk3MzJiNjktNjFlZC00MWI0LWFjMjktZDBlOTZmZDEyNjNlIn0.zzGzQErKz2iV1uHv5ExgFXv2EeG4ATjkojllWUw9-h8
+
+### Get account
+GET {{baseUrl}}/account
+Cookie: {{cookie}}
+
+### Candidate Sign-In
+# @name sign_in
+POST {{baseUrl}}/candidate/sign-in
+ 
+{
+    "login": "{{login}}",
+    "password": "{{password}}"
+}
+
+@cookie = {{sign_in.response.headers.Set-Cookie}}
+
+### Candidate Sign-Up
+POST {{baseUrl}}/candidate/sign-up
+Content-Type: application/json
+
+{
+    "login": "{{login}}",
+    "password": "{{password}}",
+    "first_name": "{{first_name}}",
+    "last_name": "{{last_name}}",
+	"resume": "",
+	"current_position": "",
+	"bio": "",
+	"education": "",
+	"skills": []
+}
+
+### Refresh Token
+POST {{baseUrl}}/refresh-token
+Cookie: {{cookie}}
+
+### Verify
+POST  {{baseUrl}}/verify
+Cookie: {{cookie}}
+
+### Sign Out
+POST  {{baseUrl}}/sign-out
+
