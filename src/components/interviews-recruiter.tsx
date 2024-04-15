@@ -1,5 +1,5 @@
 import { getRecruiterInterviews } from '@/actions/interview'
-import { InterviewCard } from '@/app/interviews/interview-card'
+import { InterviewCardRecruiter } from '@/app/interviews/interview-card-recruiter'
 
 export const InterviewsRecruiter = async () => {
   const data = await getRecruiterInterviews()
@@ -7,7 +7,7 @@ export const InterviewsRecruiter = async () => {
   return (
     <div>
       {interviews.map((interview) => (
-        <InterviewCard key={interview.public_id} interview={interview} />
+        <InterviewCardRecruiter key={interview.public_id} interview={interview} />
       ))}
     </div>
   )

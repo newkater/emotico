@@ -211,6 +211,7 @@ type QuestionCreate = {
 type Interview = {
   public_id: string;
   result: InterviewResult;
+  candidate_public_id?: string
 };
 
 type PositionInterview = Interview & {

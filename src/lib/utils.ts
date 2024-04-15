@@ -56,3 +56,6 @@ export const getScore = (result: InterviewResult) => {
     answers.reduce((sum, item) => sum + item.score, 0) / answers.length
   return Math.round(score)
 }
+
+
+export const getFullName = (user: User) => `${user.first_name} ${user.last_name}`

@@ -66,7 +66,7 @@ const PositionPage: React.FC<Props> = async ({ params: { positionId } }) => {
       </section>
       {role === "RECRUITER" && (
         <Button variant="default" size="xl">
-          <Link href={`/positions/${position.public_id}/edit`}>Edit</Link>
+          <Link href={`/positions/${position.public_id}/edit`}>Details</Link>
         </Button>
       )}
       {role === "CANDIDATE" && (

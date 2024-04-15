@@ -5,6 +5,7 @@ import { getUserRole } from "@/lib/auth";
 import { Button } from "./ui/button";
 import { createInterviewResult } from "@/actions/interview";
 import { getScore } from "@/lib/utils";
+import { getCandidate } from "@/actions/candidate";
 
 interface IProps {
   interview: PositionInterview;
@@ -19,6 +20,8 @@ export const InterviewAnalysisInfo: FC<IProps> = async ({
   position,
 }) => {
   const role = await getUserRole();
+
+const candidate = await getCandidate(interview.candidate_public_id ?? "")
 
   return (
     <div className="flex flex-col p-6">
@@ -39,7 +42,7 @@ export const InterviewAnalysisInfo: FC<IProps> = async ({
           </div>
           <div className="p-1 text-lg w-full">
             <h3 className="font-semibold">Candidate: </h3>
-            {/* <span className="text-primary-dark">{candidate?.first_name} {candidate?.last_name}</span> */}
+            <span className="text-primary-dark">{candidate?.first_name} {candidate?.last_name}</span>
           </div>
         </div>
       </div>
