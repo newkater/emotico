@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import { Badge } from "./ui/badge";
 import { getScore } from "@/lib/utils";
-import { PositionDetailApplicant } from "./position-details-applicant";
+import { PositionDetailApplicant } from "./position-detail-applicant";
 
 interface IProps {
   position: Position;
@@ -25,7 +25,7 @@ export const PositionDetailsApplicants: FC<IProps> = async ({ position }) => {
           interviews.map((interview, index) => (
             <div key={interview.public_id}>
               <Button variant="link">
-              <Link href={`/interviews/${interview.public_id}/analysis`}>
+                <Link href={`/interviews/${interview.public_id}/analysis`}>
                   {interview.candidate_public_id ? (
                     <PositionDetailApplicant
                       candidateId={interview.candidate_public_id}

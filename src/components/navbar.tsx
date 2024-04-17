@@ -5,8 +5,6 @@ import { navLinks } from "@/constants";
 import LoginButton from "./login-button";
 import { NavUser } from "./nav-user";
 import { MobileMenu } from "./mobile-menu";
-import { getToken } from "@/lib/auth";
-import { LogoutButton } from "./logout-button";
 import { getSession } from "@/actions/session";
 
 const NavBar: React.FC = async () => {

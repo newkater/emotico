@@ -12,16 +12,13 @@ interface IProps {
   position: Position;
 }
 
-const sampleFeedback =
-  "The candidate possesses a strong grasp of fundamental concepts relevant  to the position.";
-
 export const InterviewAnalysisInfo: FC<IProps> = async ({
   interview,
   position,
 }) => {
   const role = await getUserRole();
 
-const candidate = await getCandidate(interview.candidate_public_id ?? "")
+  const candidate = interview.candidate_public_id ? await getCandidate(interview.candidate_public_id) : undefined;
 
   return (
     <div className="flex flex-col p-6">
@@ -42,7 +39,9 @@ const candidate = await getCandidate(interview.candidate_public_id ?? "")
           </div>
           <div className="p-1 text-lg w-full">
             <h3 className="font-semibold">Candidate: </h3>
-            <span className="text-primary-dark">{candidate?.first_name} {candidate?.last_name}</span>
+            <span className="text-primary-dark">
+              {candidate?.first_name} {candidate?.last_name}
+            </span>
           </div>
         </div>
       </div>
@@ -66,7 +65,6 @@ const candidate = await getCandidate(interview.candidate_public_id ?? "")
           </form>
         </div>
       )}
-      <div></div>
     </div>
   );
 };

@@ -18,14 +18,6 @@ export const SIGN_UP_PATH = "/signup";
 
 
 /**
- * 
- * Logout path
- * @type {string}
- */
-export const LOGOUT_PATH = "/signout";
-
-
-/**
  * Default path
  * @type {string}
  */

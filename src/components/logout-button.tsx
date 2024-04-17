@@ -1,11 +1,21 @@
+import { revalidatePath } from "next/cache";
 import { Button } from "./ui/button";
-import { LOGOUT_PATH } from "@/routes";
-import Link from "next/link";
+import { redirect } from "next/navigation";
+import { signOut } from "@/lib/auth";
 
 export const LogoutButton: React.FC = () => {
   return (
+    <form action={async () => {
+      "use server"
+      await signOut()
+      revalidatePath("/")
+      redirect("/")
+    }
+    }>
     <Button variant="outline" type="submit" size="xl">
-      <Link href={LOGOUT_PATH}>Sign Out</Link>
-    </Button>
+      Sign Out
+    </Button>      
+    </form>
+
   );
 };

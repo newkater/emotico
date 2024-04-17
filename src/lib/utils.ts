@@ -57,5 +57,4 @@ export const getScore = (result: InterviewResult) => {
   return Math.round(score)
 }
 
-
 export const getFullName = (user: User) => `${user.first_name} ${user.last_name}`

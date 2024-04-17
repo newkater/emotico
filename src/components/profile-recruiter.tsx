@@ -3,7 +3,6 @@ import { notFound, redirect } from "next/navigation";
 import React, { FC } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Title } from "./title";
-import { ProfileDetailsAvatar } from "./profile-details-avatar";
 import { ProfileRecruiterAvatar } from "./profile-recruiter-avatar";
 import { getPositions } from "@/actions/position";
 import { LOGIN_PATH } from "@/routes";

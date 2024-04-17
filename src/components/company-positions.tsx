@@ -21,11 +21,18 @@ export const CompanyPositions: FC<IProps> = async ({ companyId }) => {
     </div>
   ) : (
     <section className="flex flex-wrap gap-12 justify-center">
-      <PositionCards
-        positions={positions.map((position) => {
-          return { ...position, company };
-        })}
-      />
+        <PositionCards
+          positions={
+            positions?.map((position) => {
+              return {
+                ...position,
+                recruiter_public_id: "",
+                description: "",
+                company,
+              };
+            }) ?? []
+          }
+        />
     </section>
   );
 };

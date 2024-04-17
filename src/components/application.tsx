@@ -65,8 +65,6 @@ export const Application: FC<IProps> = ({
     stopRecording,
     recordingStatus,
     stream,
-    recordedVideo,
-    recordedVideoUrl,
   } = useVideoRecorder();
 
   const nextPageLabel = () => {
@@ -90,7 +88,6 @@ export const Application: FC<IProps> = ({
     try {
       const buffer = await video.arrayBuffer().then(buf => webmToMp4(Buffer.from(buf)));
 
-      // const buffer = await video.arrayBuffer();
       const client = await getContainerClient(
         connectionString,
         fileContainers.video
@@ -103,7 +100,6 @@ export const Application: FC<IProps> = ({
       );
 
       if (path) {
-        console.log("video uploaded: ", path);
         await addVideo(interview.public_id, question.public_id, path);
       }
     } catch (error) {

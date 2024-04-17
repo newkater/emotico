@@ -1,6 +1,6 @@
 "use server";
 
-import { httpDelete, httpGet, httpPost } from "@/lib/http";
+import { httpDelete, httpGet, httpPost, httpPut } from "@/lib/http";
 import { revalidatePath } from "next/cache";
 
 const baseurl = process.env.NEXT_PUBLIC_BACKEND_URL;
@@ -31,7 +31,7 @@ export const updateQuestion = async (
   question: Question, 
   positionId: string,
 ) => {
-  const response = await httpPost<Question, QuestionsResponse>(
+  const response = await httpPut<Question, QuestionsResponse>(
     `${baseurl}/question/${question.public_id}`,
     question
   );

@@ -11,7 +11,7 @@ interface IProps {
 }
 
 export const InterviewCardRecruiter: React.FC<IProps> = async ({ interview }) => {
-  const candidate = await getCandidate(interview.candidate_public_id ?? "")
+  const candidate = interview.candidate_public_id ? await getCandidate(interview.candidate_public_id) : undefined
   const position = await getPosition(interview.position_public_id);
   if (position === undefined) {
     notFound();
